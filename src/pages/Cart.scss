@@ -1,0 +1,69 @@
+.corzina {
+    width: 1440px;
+    padding: 84px 80px 84px 80px;
+    background: #F9F9F9;
+    margin: auto;
+    font-family: Arial, sans-serif;
+
+    .cart {
+        width: 1280px;
+        background: #FFFFFF;
+        padding-top: 72px;
+        padding-left: 63px;
+        padding-right: 62px;
+
+        .info {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 19.6px;
+                text-align: left;
+                color: #2A254B;
+            }
+        }
+
+        hr {
+            border: 1px solid #F9F9F9;
+        }
+
+        .end {
+            display: flex;
+            justify-content: space-between;
+
+            p {
+                font-size: 14px;
+                font-weight: 400;
+                line-height: 21px;
+                color: #4E4D93;
+            }
+
+            h4 {
+                font-size: 20px;
+                font-weight: 400;
+                line-height: 28px;
+                text-align: right;
+                color: #4E4D93;
+
+                span {
+                    font-size: 24px;
+                    font-weight: 400;
+                    line-height: 33.6px;
+                    text-align: right;
+                }
+            }
+
+            button {
+                width: 172px;
+                height: 56px;
+                background: #2A254B;
+                font-size: 16px;
+                font-weight: 400;
+                line-height: 24px;
+                color: #FFFFFF;
+            }
+        }
+    }
+}

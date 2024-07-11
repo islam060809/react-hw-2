@@ -1,15 +1,27 @@
-import React from 'react'
+import React, { useEffect, useState } from 'react'
 import "./Home.scss"
 import box1 from '../../icons/about-box1.png'
 import box2 from '../../icons/about-box2.png'
 import box3 from '../../icons/about-box3.png'
 import box4 from '../../icons/about-box4.png'
+import imgEnd from '../../icons/ImageEnd.png'
+import axios from '../../axios'
 
-const HomeV1 = ({pro}) => {
-  if (pro===null) {
-    return <h2>Loading</h2>
+const HomeV1 = () => {
+  const [products, setProduct] = useState(null)
+  async function getProduct() {
+    const { data } = await axios.get()
+    const newData = await data.slice(0, 4)
+    console.log(newData);
+    setProduct(newData)
   }
-  const newPro = pro.slice(0,4)
+  useEffect(() => {
+    getProduct()
+  }, []);
+  if (products === null) {
+    return <h1>Loading</h1>
+  }
+
   return (
     <div className='home'>
       <div className="hero">
@@ -50,18 +62,40 @@ const HomeV1 = ({pro}) => {
         </div>
       </div>
       <div className="pro">
-<h2>New ceramics</h2>
-<div className="carts">
-  {newPro.map((el)=>{
-  return (<div className=" cart">
-<img src={el.image} alt="" />
-<h4>{el.title}</h4>
-<p>£{el.price}</p>
-  </div>)
-}
-  )}
-</div>
-<button>View collection</button>
+        <h2>New ceramics</h2>
+        <div className="carts">
+          {products.map((el) => {
+            return (<div className=" cart">
+              <img src={el.image} alt="" />
+              <h4>{el.title}</h4>
+              <p>£{el.price}</p>
+            </div>)
+          }
+          )}
+        </div>
+        <button>View collection</button>
+      </div>
+      <div className="join">
+        <h2>Join the club and get the benefits</h2>
+        <p>Sign up for our newsletter and receive exclusive offers on new <br />
+          ranges, sales, pop up stores and more</p>
+        <div className="">
+          <input type="text" placeholder='your@email.com' />
+          <button>Sign up</button>
+        </div>
+      </div>
+      <div className="end">
+        <div className="text">
+          <h3>From a studio in London to a global brand with <br />
+            over 400 outlets</h3>
+          <p>When we started Avion, the idea was simple. Make high quality furniture <br />
+            affordable and available for the mass market. <br /><br />
+            Handmade, and lovingly crafted furniture and homeware is what we live, <br />
+            breathe and design so our Chelsea boutique become the hotbed for the <br />
+            London interior design community.</p>
+            <button>Get in touch</button>
+        </div>
+        <img src={imgEnd} alt="" />
       </div>
     </div>
   )
