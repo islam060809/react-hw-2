@@ -1,11 +1,13 @@
 import axios from '../axios'
-import React, { useEffect, useState } from 'react'
+import React, { useContext, useEffect, useState } from 'react'
 import { NavLink } from 'react-router-dom'
 import img from '../icons/AllProductImg.png'
 import ich from '../icons/icheikaa.png'
 import './AllPro.scss'
+import { useTranslation } from 'react-i18next'
 
 const AllPro = () => {
+   const { t } = useTranslation()
   const [products, setProducts] = useState(null)
   async function getPro() {
     try {
@@ -21,7 +23,7 @@ const AllPro = () => {
   }, [])
 
   if (products === null) {
-    return <h2>Loading</h2>
+    return <h2>{t("Loading")}</h2>
   }
   return (
     <div className='AllPro'>
@@ -29,36 +31,32 @@ const AllPro = () => {
       <div className="hero">
         <div className="filtr">
           <div class="product-type">
-            <h2>Product type</h2>
+            <h2>{t("Product type")}</h2>
             <ul class="checklist">
               <li>
                 <input type="checkbox" />
-                <label>Furniture</label>
+                <label>{t("Furniture")}</label>
               </li>
               <li>
                 <input type="checkbox" />
-                <label>Homeware</label>
+                <label>{t("Homeware")}</label>
               </li>
               <li>
                 <input type="checkbox" />
-                <label>Sofas</label>
+                <label>{t("Sofas")}</label>
               </li>
               <li>
                 <input type="checkbox"  />
-                <label >Homeware</label>
-              </li>
-              <li>
-                <input type="checkbox"  />
-                <label >Light fittings</label>
+                <label >{t("Light fittings")}</label>
               </li>
               <li>
                 <input type="checkbox"/>
-                <label>Accessories</label>
+                <label>{t("Accessories")}</label>
               </li>
             </ul>
           </div>
           <div class="product-type">
-            <h2>Price</h2>
+            <h2>{t("Price")}</h2>
             <ul class="checklist">
               <li>
                 <input type="checkbox" />
@@ -75,23 +73,23 @@ const AllPro = () => {
             </ul>
           </div>
           <div class="product-type">
-            <h2>Designer</h2>
+            <h2>{t("Designer")}</h2>
             <ul class="checklist">
               <li>
                 <input type="checkbox"  />
-                <label >Robert Smith</label>
+                <label >{t("Robert Smith")}</label>
               </li>
               <li>
                 <input type="checkbox"  />
-                <label >Liam Gallagher</label>
+                <label >{t("Liam Gallagher")}</label>
               </li>
               <li>
                 <input type="checkbox" />
-                <label >Biggie Smalls</label>
+                <label >{t("Biggie Smalls")}</label>
               </li>
               <li>
                 <input type="checkbox" />
-                <label>Thom Yorke</label>
+                <label>{t("Thom Yorke")}</label>
               </li>
             </ul>
           </div>

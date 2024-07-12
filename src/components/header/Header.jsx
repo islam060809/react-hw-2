@@ -1,32 +1,38 @@
-import React, { useTransition } from 'react'
+import React, { useContext } from 'react'
 import Search from '../../icons/Search.png'
 import Cart from '../../icons/Cart.png'
 import Avatar from '../../icons/Avatar.png'
 import "./Header.scss"
 import { NavLink } from 'react-router-dom'
+import { DataContext } from '../../context/AppContext'
+import { useTranslation } from 'react-i18next'
 
 const Header = () => {
-  const {t}=useTransition()
+  const context = useContext(DataContext)
+  const { changL, active } = context
+  const { t } = useTranslation()
   return (
 
     <div className='header'>
-        <div className="logo">
+      <div className="logo">
         <img className='search' src={Search} alt="" />
-        <h4>Avion</h4>
-      <NavLink to={'cart'}><img className='cart' src={Cart} alt="" /></NavLink>
+        <NavLink to={"/"}> <h4>{t ("Avion")}</h4></NavLink>
+        <NavLink to={'cart'}><img className='cart' src={Cart} alt="" /></NavLink>
         <img className='avatar' src={Avatar} alt="" />
-        </div>
-        <hr />
-        <div className="cate">
-          <p><NavLink to={"all"}>{"All Products"}</NavLink></p>
-            <p>Plant pots</p>
-            <p>Ceramics</p>
-            <p>Tables</p>
-            <p>Chairs</p>
-            <p>Crockery</p>
-            <p>Tableware</p>
-            <p>Cutlery</p>
-        </div>
+      </div>
+      <hr />
+      <div className="cate">
+        <p><NavLink to={"all"}>{t("All Products")}</NavLink></p>
+        <p>{t("Plant pots")}</p>
+        <p>{t("Ceramics")}</p>
+        <p>{t("Tables")}</p>
+        <p>{t("Chairs")}</p>
+        <p>{t("Crockery")}</p>
+        <p>{t("Tableware")}</p>
+        <p>{t("Cutlery")}</p>
+      </div>
+      <button onClick={(e) => changL(e.target.innerText)}>en</button>
+      <button onClick={(e) => changL(e.target.innerText)}>ru</button>
     </div>
   )
 }

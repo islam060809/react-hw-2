@@ -1,10 +1,12 @@
 import React, { useContext } from 'react'
 import { DataContext } from '../context/AppContext'
 import './Cart.scss'
+import { useTranslation } from 'react-i18next'
+
 const Cart = () => {
+  const { t } = useTranslation()
   const context = useContext(DataContext)
   const {cartData}=context
-  console.log(cartData, 'islam');
   // const  cartData  = localStorage.getItem("carzina")
   // const lsData = JSON.parse(cartData)
   // console.log(lsData);
@@ -15,9 +17,9 @@ const Cart = () => {
     <div className='corzina'>
       <div className='cart'>
         <div className="info">
-          <p>Product</p>
-          <p>Quantity</p>
-          <p>Total</p>
+          <p>{t("Product")}</p>
+          <p>{t("Quantity")}</p>
+          <p>{t("Total")}</p>
         </div>
         <hr />
         <div className="products">
@@ -27,10 +29,10 @@ const Cart = () => {
         </div>
         <hr />
         <div className="end">
-          <p>Taxes and shipping are calculated at checkout</p>
+          <p>{t("Taxes and shipping are calculated at checkout")}</p>
           <div className="">
-            <h4>Subtotal <span>£210</span></h4>
-            <button>Go to checkout</button>
+            <h4>{t("Subtotal")} <span>£210</span></h4>
+            <button>{t("Go to checkout")}</button>
           </div>
         </div>
       </div>

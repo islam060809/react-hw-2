@@ -8,11 +8,13 @@ const AppContext = ({ children }) => {
   const [products, setProducts] = useState([])
   const [cartData, setCartData] = useState([])
   const [productD, setProductD] = useState(null)
-  // const [activ, setActiv] = useState("ru")
-  // const { i18n } = useTranslation()
-  // function changeLang(params) {
+  const [active, setActive] = useState('ru')
+  const { i18n } = useTranslation()
 
-  // }
+  function changL(lng) {
+    i18n.changeLanguage(lng)
+    setActive(lng)
+  }
 
   const getPro = async () => {
     try {
@@ -26,8 +28,8 @@ const AppContext = ({ children }) => {
 
   const addToCart = (id) => {
     console.log(id);
-    const LSData= JSON.parse( localStorage.getItem('carzina'))
-    
+    const LSData = JSON.parse(localStorage.getItem('carzina'))
+
     setCartData(LSData)
     let isCorzina = cartData.find(x => x.id === id);
     console.log(isCorzina);
@@ -35,9 +37,9 @@ const AppContext = ({ children }) => {
       const element = products.filter(el => el.id === id)
       console.log(element);
       setCartData((prewData) => [...prewData, ...element])
-            localStorage.setItem("carzina", JSON.stringify(cartData))
+      localStorage.setItem("carzina", JSON.stringify(cartData))
 
-    // console.log(LSData);
+      // console.log(LSData);
     } else {
       const newData = { ...productD, count: Number(productD.count) + 1 }
       setProductD(newData)
@@ -47,14 +49,14 @@ const AppContext = ({ children }) => {
       // setCartData(LSData)
     }
   }
-  console.log(cartData.length,'rrrr');
+  console.log(cartData.length, 'rrrr');
   // localStorage.setItem("carzina", JSON.stringify(cartData))
-      const LSData= JSON.parse( localStorage.getItem('carzina'))
-      // console.log(LSData);
-      // if(cartData.length===0){
-        // setCartData(LSData)
+  const LSData = JSON.parse(localStorage.getItem('carzina'))
+  // console.log(LSData);
+  // if(cartData.length===0){
+  // setCartData(LSData)
 
-      // }
+  // }
 
 
   function plus(i) {
@@ -62,7 +64,7 @@ const AppContext = ({ children }) => {
     const newData = { ...productD, count: Number(productD.count) + 1 }
     setProductD(newData)
     // let isCorzina = cartData.find(x => x.id === i.id);
-    
+
   }
 
   function minus(i) {
@@ -70,6 +72,7 @@ const AppContext = ({ children }) => {
     const newData = { ...productD, count: Number(productD.count) - 1 }
     setProductD(newData)
   }
+
 
   useEffect(() => {
     getPro();
@@ -95,7 +98,9 @@ const AppContext = ({ children }) => {
     setProductD,
     plus,
     minus,
-    cartData
+    cartData,
+    active,
+    changL,
   }
   return (
     <DataContext.Provider value={value}>{children}</DataContext.Provider>
